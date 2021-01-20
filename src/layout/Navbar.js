@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../hooks/useForm";
 import { insertTextAction } from "../redux/actions/textActions";

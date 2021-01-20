@@ -10,8 +10,7 @@ const initialState = {
   loading: false,
 };
 
-export default function (state = initialState, action) {
-
+export const textReducer = (state = initialState, action) => {
   switch (action.type) {
     case INSERT_TEXT:
       return {
@@ -37,4 +36,4 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
