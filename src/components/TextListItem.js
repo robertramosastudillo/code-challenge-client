@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
 const TextListItem = ({ invertedText }) => {
+  const { text, palindrome } = invertedText;
+
   return (
-    <ol>
-      <li>{invertedText}</li>
-    </ol>
+    <tr>
+      <td>{text}</td>
+      <td>{palindrome ? "Yes" : "No"}</td>
+    </tr>
   );
 };
- 
+
 export default TextListItem;

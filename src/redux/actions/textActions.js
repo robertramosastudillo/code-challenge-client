@@ -6,18 +6,13 @@ import {
 
 import axiosClient from "../../config/axios";
 
+// INSERT TEXT
 export function insertTextAction(textToInvert) {
   return async (dispatch) => {
     dispatch(insertText());
     try {
-        
-      console.log(textToInvert);
-      // const params = new URLSearchParams({
-      //   text: textToInvert,
-      // }).toString();
-
-      // await axiosClient.post(`/texts?${params})}`);
-      dispatch(insertTextSuccessfully(textToInvert));
+      let invertedText = await axiosClient.get(`/texts?text=${textToInvert}`);
+      dispatch(insertTextSuccessfully(invertedText.data));
     } catch (error) {
       console.log(error);
       dispatch(insertTextError(true));
@@ -30,12 +25,13 @@ const insertText = () => ({
   payload: true,
 });
 
-const insertTextSuccessfully = (textToInvert) => ({
+const insertTextSuccessfully = (invertedText) => ({
   type: INSERT_TEXT_SUCCESSFULLY,
-  payload: textToInvert,
+  payload: invertedText,
 });
 
 const insertTextError = (status) => ({
   type: INSERT_TEXT_ERROR,
   payload: status,
 });
+// INSERT TEXT

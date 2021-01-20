@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../hooks/useForm";
 import { insertTextAction } from "../redux/actions/textActions";
 
 const Navbar = () => {
-  const [formValues, handleInputChange] = useForm({ textToInvert: "" });
-
+  const [formValues, handleInputChange, reset] = useForm({ textToInvert: "" });
   const { textToInvert } = formValues;
 
   const dispatch = useDispatch();
   const insertText = (textToInvert) => dispatch(insertTextAction(textToInvert));
 
-  const handleSearch = (e) => {
+  const handleSend = (e) => {
     e.preventDefault();
+
+    if (textToInvert.trim() === "") return;
+
     insertText(textToInvert);
+    reset();
   };
 
   return (
@@ -22,7 +25,7 @@ const Navbar = () => {
         <span className="navbar-brand" href="#">
           Code Challenge
         </span>
-        <form className="d-flex" onClick={handleSearch}>
+        <form className="d-flex" onSubmit={handleSend}>
           <input
             className="form-control me-2"
             type="text"
